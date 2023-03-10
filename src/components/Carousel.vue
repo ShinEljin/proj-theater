@@ -12,7 +12,6 @@
   </div> -->
   <swiper
     :modules="modules"
-    effect="fade"
     :slides-per-view="3"
     :space-between="20"
     navigation
@@ -26,7 +25,7 @@
 </template>
 <script>
 // import Swiper core and required modules
-import { Navigation, EffectFade } from "swiper";
+import { Navigation } from "swiper";
 
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -54,7 +53,7 @@ export default {
     return {
       onSwiper,
       onSlideChange,
-      modules: [Navigation, EffectFade],
+      modules: [Navigation],
     };
   },
 };
