@@ -4,7 +4,7 @@
     @click.self="$emit('closeModal')"
   >
     <div
-      class="w-[470px] h-[250px] p-5 my-[200px] mx-auto bg-white rounded-xl flex items-center justify-center flex-col"
+      class="w-[90%] max-w-[470px] h-[250px] p-5 my-[200px] mx-auto bg-white rounded-xl flex items-center justify-center flex-col"
     >
       <h1 class="font-bold text-2xl text-center mb-8">
         YOU ARE SUCCESSFULLY BOOKED!
