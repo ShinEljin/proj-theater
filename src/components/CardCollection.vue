@@ -1,12 +1,14 @@
 <template>
   <div
-    class="flex flex-col justify-center gap-6 md:gap-12 h-full max-w-6xl mx-auto bg-black py-8 px-8"
+    class="flex flex-col justify-center gap-6 md:gap-12 h-full max-w-6xl mx-auto bg-black py-8 px-4"
   >
     <div class="text-white flex justify-between items-center">
-      <h1 class="text-2xl lg:text-4xl font-bold">{{ title }}</h1>
-      <a href="!#" class="text-gray-400 text-normal lg:text-2xl pr-8"
-        >See more</a
-      >
+      <h1 class="text-xl lg:text-4xl font-bold">{{ title }}</h1>
+      <router-link
+        :to="{ name: 'movies' }"
+        class="text-gray-400 hover:text-gray-200 cursor-pointer text-xs lg:text-xl"
+        >See more
+      </router-link>
     </div>
     <div>
       <Carousel :posters="posters" />

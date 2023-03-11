@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-main-bg bg-cover bg-center bg-no-repeat h-screen px-8">
+  <div class="bg-main-bg bg-cover bg-center bg-no-repeat h-screen px-4">
     <div
       class="flex justify-start items-center h-[calc(100%-6rem)] max-w-6xl mx-auto pt-12 md:pt-4"
     >
@@ -21,4 +21,4 @@
   </div>
 </template>
 
-<script setup></script>
+<style scoped></style>

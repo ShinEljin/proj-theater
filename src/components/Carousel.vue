@@ -1,29 +1,24 @@
 <template>
-  <!-- <div
-    class="flex flex-col justify-center gap-12 h-full max-w-6xl mx-auto bg-black py-8 px-8"
-  >
-    <div class="text-white flex justify-between items-center">
-      <h1 class="text-4xl font-bold">{{ title }}</h1>
-      <a href="!#" class="text-gray-400 text-2xl pr-8">See more</a>
-    </div>
-    <div>
- 
-    </div>
-  </div> -->
   <swiper
-    :modules="modules"
-    :slides-per-view="3"
+    :breakpoints="bp"
+    :modules="[Navigation]"
+    :navigation="true"
+    :long-swipes="true"
+    :slides-per-view="1.8"
     :space-between="20"
-    navigation
-    @swiper="onSwiper"
-    @slideChange="onSlideChange"
+    :loop="true"
   >
-    <swiper-slide v-for="poster in posters" class="w-fit"
-      ><img :src="poster" :alt="poster" loading="lazy"
+    <swiper-slide v-for="(poster, index) in posters" :key="index">
+      <img
+        :src="poster.url"
+        :alt="index"
+        @click="bookMovie(poster)"
+        class="cursor-pointer"
     /></swiper-slide>
   </swiper>
 </template>
-<script>
+
+<script setup>
 // import Swiper core and required modules
 import { Navigation } from "swiper";
 
@@ -33,28 +28,54 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import { useRouter } from "vue-router";
 
-// Import Swiper styles
-export default {
-  props: {
-    posters: Array,
+defineProps({
+  posters: Array,
+});
+
+const bp = {
+  400: {
+    slidesPerView: 2.4,
+    spaceBetween: 20,
   },
-  components: {
-    Swiper,
-    SwiperSlide,
+  580: {
+    slidesPerView: 3.3,
+    spaceBetween: 20,
   },
-  setup() {
-    const onSwiper = (swiper) => {
-      console.log(swiper);
-    };
-    const onSlideChange = () => {
-      console.log("slide change");
-    };
-    return {
-      onSwiper,
-      onSlideChange,
-      modules: [Navigation],
-    };
+  1024: {
+    slidesPerView: 4,
+    spaceBetween: 20,
   },
 };
+
+const router = useRouter();
+
+const bookMovie = (poster) => {
+  if (poster.hTitle) {
+    router.push({
+      name: "movieBook",
+      params: { movie: poster.title },
+      query: { ...poster },
+    });
+  }
+};
 </script>
+
+<style>
+.swiper-button-next,
+.swiper-button-prev {
+  right: 10px;
+  padding: 30px;
+  color: #f00 !important;
+  fill: #f00 !important;
+  stroke: #f00 !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+}
+</style>

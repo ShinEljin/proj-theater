@@ -1,5 +1,5 @@
 <template>
-  <div>Cinema</div>
+  <div class="mt-44 text-white">Cinema</div>
 </template>
 
 <script setup></script>
