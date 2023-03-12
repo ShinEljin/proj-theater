@@ -1,72 +1,62 @@
 <template>
-  <div
-    class="top-0 fixed bg-[rgba(0,0,0,0.44)] w-full h-full"
-    @click.self="$emit('closeModal')"
-  >
-    <div
-      class="w-[90%] max-w-[470px] h-[250px] p-5 my-[200px] mx-auto bg-white rounded-xl flex items-center justify-center flex-col | modal"
-    >
-      <h1 class="font-bold text-2xl text-center mb-8">
-        YOU ARE SUCCESSFULLY BOOKED!
-      </h1>
-      <button
-        class="bg-red-600 px-4 py-4 rounded-lg hover:scale-110 hover:opacity-80 transition-all duration-400 font-semibold text-white w-[16rem]"
-        @click="bookAnother"
-      >
-        BOOK ANOTHER
-      </button>
-      <button
-        class="px-4 py-4 rounded-lg hover:scale-110 hover:opacity-80 transition-all duration-400 font-semibold text-red-600 w-[16rem]"
-        @click="goHome"
-      >
-        HOME
-      </button>
-    </div>
-  </div>
+  <template>
+    <Teleport to="body">
+      <Transition name="modal-outer">
+        <div
+          v-show="modalActive"
+          @click.self="$emit('close-modal')"
+          class="absolute w-full bg-black bg-opacity-30 h-screen top-0 left-0 flex justify-center px-8"
+        >
+          <Transition name="modal-inner">
+            <div
+              v-if="modalActive"
+              class="p-4 bg-white self-start mt-32 max-w-screen-md"
+            >
+              <slot />
+              <button
+                class="text-white mt-8 bg-weather-primary py-2 px-6"
+                @click="$emit('close-modal')"
+              >
+                Close
+              </button>
+            </div>
+          </Transition>
+        </div>
+      </Transition>
+    </Teleport>
+  </template>
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
-
-const router = useRouter();
-
-defineEmits(["closeModal"]);
-
-const bookAnother = () => {
-  router.push({ name: "movies" });
-};
-
-const goHome = () => {
-  router.push({ name: "home" });
-};
+defineEmits(["close-modal"]);
+defineProps({
+  modalActive: {
+    type: Boolean,
+    default: false,
+  },
+});
 </script>
 
 <style scoped>
-.modal {
-  animation: popup 0.7s;
+.modal-outer-enter-active,
+.modal-outer-leave-active {
+  transition: opacity 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02);
 }
-
-@keyframes popup {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.4);
-  }
-  60% {
-    transform: scale(1.1);
-  }
-  70% {
-    transform: scale(1.2);
-  }
-  80% {
-    transform: scale(1);
-  }
-  90% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
+.modal-outer-enter-from,
+.modal-outer-leave-to {
+  opacity: 0;
+}
+.modal-inner-enter-active {
+  transition: all 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02) 0.15s;
+}
+.modal-inner-leave-active {
+  transition: all 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02);
+}
+.modal-inner-enter-from {
+  opacity: 0;
+  transform: scale(0.8);
+}
+.modal-inner-leave-to {
+  transform: scale(0.8);
 }
 </style>

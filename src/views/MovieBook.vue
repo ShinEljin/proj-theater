@@ -23,7 +23,23 @@
       </button>
     </div>
   </div>
-  <BookedModal @closeModal="toggleModal" v-if="bookedModal" />
+  <BookedModal :modalActive="modalActive" @close-modal="toggleModal">
+    <h1 class="font-bold text-2xl text-center mb-8">
+      YOU ARE SUCCESSFULLY BOOKED!
+    </h1>
+    <button
+      class="bg-red-600 px-4 py-4 rounded-lg hover:scale-110 hover:opacity-80 transition-all duration-400 font-semibold text-white w-[16rem]"
+      @click="bookAnother"
+    >
+      BOOK ANOTHER
+    </button>
+    <button
+      class="px-4 py-4 rounded-lg hover:scale-110 hover:opacity-80 transition-all duration-400 font-semibold text-red-600 w-[16rem]"
+      @click="goHome"
+    >
+      HOME
+    </button>
+  </BookedModal>
 </template>
 
 <script setup>
@@ -32,19 +48,30 @@ import MovieInfo from "../components/MovieInfo.vue";
 import CinemaBox from "../components/CinemaBox.vue";
 import BookedModal from "../components/BookedModal.vue";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const movieSeats = ref(null);
 const chooseSeatOpen = ref(false);
-const bookedModal = ref(false);
-
-const toggleModal = () => {
-  bookedModal.value = !bookedModal.value;
-};
 
 const handleClick = () => {
   chooseSeatOpen.value = true;
   setTimeout(() => {
     movieSeats.value.scrollIntoView({ behavior: "smooth" });
   }, 150);
+};
+
+const modalActive = ref(null);
+const toggleModal = () => {
+  modalActive.value = !modalActive.value;
+  console.log(modalActive.value);
+};
+
+const bookAnother = () => {
+  router.push({ name: "movies" });
+};
+
+const goHome = () => {
+  router.push({ name: "home" });
 };
 </script>
