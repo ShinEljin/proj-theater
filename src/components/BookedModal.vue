@@ -1,36 +1,33 @@
 <template>
-  <template>
-    <Teleport to="body">
-      <Transition name="modal-outer">
-        <div
-          v-show="modalActive"
-          @click.self="$emit('close-modal')"
-          class="absolute w-full bg-black bg-opacity-30 h-screen top-0 left-0 flex justify-center px-8"
-        >
-          <Transition name="modal-inner">
-            <div
-              v-if="modalActive"
-              class="p-4 bg-white self-start mt-32 max-w-screen-md"
-            >
-              <slot />
-              <button
-                class="text-white mt-8 bg-weather-primary py-2 px-6"
-                @click="$emit('close-modal')"
-              >
-                Close
-              </button>
-            </div>
-          </Transition>
-        </div>
-      </Transition>
-    </Teleport>
-  </template>
+  <Teleport to="body">
+    <Transition name="modal-outer">
+      <div
+        v-show="modalActive"
+        class="fixed top-0 bg-[#0000007f] w-full h-full flex justify-center items-center"
+        @click.self="clickableOutside && $emit('close-modal')"
+      >
+        <Transition name="modal-inner">
+          <div
+            v-if="modalActive"
+            class="w-[90%] max-w-md p-5 bg-white rounded-lg flex flex-col justify-center items-center"
+          >
+            <slot></slot>
+          </div>
+        </Transition>
+      </div>
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup>
 defineEmits(["close-modal"]);
+
 defineProps({
   modalActive: {
+    type: Boolean,
+    default: false,
+  },
+  clickableOutside: {
     type: Boolean,
     default: false,
   },

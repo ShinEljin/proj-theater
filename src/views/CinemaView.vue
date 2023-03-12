@@ -1,7 +1,14 @@
 <template>
-  <div class="mt-44 text-white">Cinema</div>
+  <div class="mt-24">
+    <CinemaCard
+      v-for="(poster, index) in nsPosters"
+      :movie="poster"
+      :index="index"
+    />
+  </div>
 </template>
 
-<script setup></script>
-
-<style lang="scss" scoped></style>
+<script setup>
+import CinemaCard from "../components/CinemaCard.vue";
+import { nsPosters } from "../posters/poster";
+</script>

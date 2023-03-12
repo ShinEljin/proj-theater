@@ -12,7 +12,7 @@
       <img
         :src="poster.url"
         :alt="index"
-        @click="bookMovie(poster)"
+        @click="bookMovie(poster, index)"
         class="cursor-pointer"
     /></swiper-slide>
   </swiper>
@@ -51,12 +51,11 @@ const bp = {
 
 const router = useRouter();
 
-const bookMovie = (poster) => {
+const bookMovie = (poster, index) => {
   if (poster.hTitle) {
     router.push({
       name: "movieBook",
-      params: { movie: poster.title },
-      query: { ...poster },
+      params: { movie: index },
     });
   }
 };

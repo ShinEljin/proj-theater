@@ -29,7 +29,6 @@ const router = createRouter({
       path: "/movies/:movie",
       name: "movieBook",
       component: MovieBook,
-      props: true,
     },
   ],
 });

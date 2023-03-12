@@ -32,7 +32,7 @@
             :alt="index"
             loading="lazy"
             class="cursor-pointer hover:scale-105 transition-all duration-200"
-            @click="bookMovie(poster)"
+            @click="bookMovie(index)"
           />
 
           <img
@@ -58,11 +58,10 @@ const tabActive = ref("NS");
 
 const router = useRouter();
 
-const bookMovie = (poster) => {
+const bookMovie = (index) => {
   router.push({
     name: "movieBook",
-    params: { movie: poster.title },
-    query: { ...poster },
+    params: { movie: index },
   });
 };
 </script>

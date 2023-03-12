@@ -2,14 +2,18 @@
   <div
     class="flex flex-col md:flex-row justify-center md:justify-start items-center bg-[#000000af] rounded-xl py-4"
   >
-    <img :src="query.url" :alt="query.title" class="max-w-[20rem]" />
+    <img
+      :src="nsPosters[params.movie].url"
+      :alt="nsPosters[params.movie].title"
+      class="max-w-[20rem]"
+    />
     <div
       class="md:pl-24 lg:max-w-[55%] flex flex-col justify-center items-center md:items-start"
     >
       <h1
         class="font-bold text-4xl md:text-5xl pb-2 text-center md:text-left px-4 md:px-0 mt-2 md:0"
       >
-        {{ query.hTitle }}
+        {{ nsPosters[params.movie].hTitle }}
       </h1>
       <p class="text-xl md:text-2xl text-gray-500 tracking-wide pb-8">
         3h 10min PG
@@ -31,10 +35,11 @@
 
 <script setup>
 import { useRoute } from "vue-router";
+import { nsPosters } from "../posters/poster";
 
 defineEmits(["chooseSeat"]);
 
-const { params, query } = useRoute();
+const { params } = useRoute();
 </script>
 
 <style lang="scss" scoped></style>

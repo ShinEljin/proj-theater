@@ -23,6 +23,7 @@
       </button>
     </div>
   </div>
+
   <BookedModal :modalActive="modalActive" @close-modal="toggleModal">
     <h1 class="font-bold text-2xl text-center mb-8">
       YOU ARE SUCCESSFULLY BOOKED!
@@ -64,7 +65,6 @@ const handleClick = () => {
 const modalActive = ref(null);
 const toggleModal = () => {
   modalActive.value = !modalActive.value;
-  console.log(modalActive.value);
 };
 
 const bookAnother = () => {

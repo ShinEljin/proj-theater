@@ -1,16 +1,17 @@
 <template>
   <nav class="w-full fixed top-0 px-4 z-10 backdrop-filter backdrop-blur-lg">
     <div
-      class="text-gray-400 flex items-center justify-between md:justify-start md:gap-28 h-16 max-w-6xl mx-auto"
+      class="text-gray-400 flex items-center justify-between gap-12 md:gap-28 h-16 max-w-6xl mx-auto"
     >
       <button
-        class="text-2xl text-white font-bold uppercase tracking-wider border-b-2 border-red-500 px-4 py-2 rounded-full"
+        class="text-2xl text-white font-bold uppercase tracking-wider border-b-2 border-red-500 px-4 py-2 rounded-full min-w-[190px]"
         @click="route('home')"
       >
         <!-- THEATER -->
-        THEATER
+        RPE <span class="font-normal">CINEMA</span>
       </button>
-      <div class="gap-28 hidden md:flex">
+
+      <div class="hidden md:gap-12 xl:gap-28 lg:flex">
         <button
           class="hover:tracking-wider hover:scale-110 transition-all duration-200 hover:text-gray-200 hover:underline px-2 py-3"
           @click="route('home')"
@@ -30,15 +31,25 @@
           MOVIES
         </button>
       </div>
-      <button type="button" @click="menuOpen = !menuOpen" v-if="!menuOpen">
-        <i class="fa-solid fa-bars text-3xl text-white block md:hidden"></i>
-      </button>
-      <button type="button" @click="menuOpen = !menuOpen" v-if="menuOpen">
-        <i class="fa-solid fa-xmark text-4xl text-white block md:hidden"></i>
-      </button>
+
+      <div class="hidden lg:flex flex-row gap-1">
+        <button
+          class="text-white bg-red-500 min-w-[100px] px-4 py-2 rounded-xl hover:opacity-80 transition-all duration-400 font-semibold"
+        >
+          LOGIN
+        </button>
+      </div>
+      <div class="block lg:hidden">
+        <button type="button" @click="menuOpen = !menuOpen" v-if="!menuOpen">
+          <i class="fa-solid fa-bars text-3xl text-white"></i>
+        </button>
+        <button type="button" @click="menuOpen = !menuOpen" v-if="menuOpen">
+          <i class="fa-solid fa-xmark text-4xl text-white"></i>
+        </button>
+      </div>
     </div>
     <div
-      class="backdrop-filter backdrop-blur-lg text-white rounded-md flex flex-col items-center gap-4 py-4 shadow-2xl"
+      class="backdrop-filter backdrop-blur-lg text-white rounded-md flex-col items-center gap-4 py-4 shadow-2xl flex lg:hidden"
       v-if="menuOpen"
     >
       <button
@@ -58,6 +69,11 @@
         @click="route('movies')"
       >
         MOVIES
+      </button>
+      <button
+        class="text-white bg-red-500 min-w-[100px] px-4 py-2 rounded-xl hover:opacity-80 transition-all duration-400 font-semibold"
+      >
+        LOGIN
       </button>
     </div>
   </nav>
