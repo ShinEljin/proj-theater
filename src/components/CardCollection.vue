@@ -6,8 +6,8 @@
       <h1 class="text-xl lg:text-4xl font-bold">{{ title }}</h1>
       <router-link
         :to="{ name: 'movies' }"
-        class="text-gray-400 hover:text-gray-200 cursor-pointer text-xs lg:text-xl"
-        >See more
+        class="text-red-500 hover:text-gray-200 cursor-pointer text-sm font-medium lg:text-xl"
+        >SEE MORE <i class="fa-solid fa-circle-chevron-right ml-1"></i>
       </router-link>
     </div>
     <div>

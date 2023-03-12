@@ -1,63 +1,78 @@
 <template>
   <nav class="w-full fixed top-0 px-4 z-10 backdrop-filter backdrop-blur-lg">
     <div
-      class="text-gray-400 flex items-center justify-between md:justify-start md:gap-28 h-24 max-w-6xl mx-auto"
+      class="text-gray-400 flex items-center justify-between md:justify-start md:gap-28 h-16 max-w-6xl mx-auto"
     >
-      <h3
+      <button
         class="text-2xl text-white font-bold uppercase tracking-wider border-b-2 border-red-500 px-4 py-2 rounded-full"
+        @click="route('home')"
       >
         <!-- THEATER -->
         THEATER
-      </h3>
+      </button>
       <div class="gap-28 hidden md:flex">
-        <router-link
-          :to="{ name: 'home' }"
+        <button
           class="hover:tracking-wider hover:scale-110 transition-all duration-200 hover:text-gray-200 hover:underline px-2 py-3"
-          >HOME</router-link
+          @click="route('home')"
         >
-        <router-link
-          :to="{ name: 'cinemas' }"
+          HOME
+        </button>
+        <button
           class="hover:tracking-wider hover:scale-110 transition-all duration-200 hover:text-gray-200 hover:underline px-2 py-3"
-          >CINEMAS</router-link
+          @click="route('cinemas')"
         >
-        <router-link
-          :to="{ name: 'movies' }"
+          CINEMAS
+        </button>
+        <button
           class="hover:tracking-wider hover:scale-110 transition-all duration-200 hover:text-gray-200 hover:underline px-2 py-3"
-          >MOVIES</router-link
+          @click="route('movies')"
         >
+          MOVIES
+        </button>
       </div>
       <button type="button" @click="menuOpen = !menuOpen" v-if="!menuOpen">
-        <i class="fa-solid fa-bars text-4xl text-white block md:hidden"></i>
+        <i class="fa-solid fa-bars text-3xl text-white block md:hidden"></i>
       </button>
       <button type="button" @click="menuOpen = !menuOpen" v-if="menuOpen">
-        <i class="fa-solid fa-x text-4xl text-white block md:hidden"></i>
+        <i class="fa-solid fa-xmark text-4xl text-white block md:hidden"></i>
       </button>
     </div>
     <div
       class="backdrop-filter backdrop-blur-lg text-white rounded-md flex flex-col items-center gap-4 py-4 shadow-2xl"
       v-if="menuOpen"
     >
-      <router-link
-        :to="{ name: 'home' }"
+      <button
         class="text-xl hover:tracking-wider hover:scale-110 transition-all duration-200 hover:underline hover:text-gray-200 px-6 py-3"
-        >HOME</router-link
+        @click="route('home')"
       >
-      <router-link
-        :to="{ name: 'cinemas' }"
+        HOME
+      </button>
+      <button
         class="text-xl hover:tracking-wider hover:scale-110 transition-all duration-200 hover:underline hover:text-gray-200 px-6 py-3"
-        >CINEMA</router-link
+        @click="route('cinemas')"
       >
-      <router-link
-        :to="{ name: 'movies' }"
+        CINEMA
+      </button>
+      <button
         class="text-xl hover:tracking-wider hover:scale-110 transition-all duration-200 hover:underline hover:text-gray-200 px-6 py-3"
-        >MOVIES</router-link
+        @click="route('movies')"
       >
+        MOVIES
+      </button>
     </div>
   </nav>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const route = (name) => {
+  menuOpen.value = false;
+  router.push({ name });
+};
 
 const menuOpen = ref(false);
 </script>

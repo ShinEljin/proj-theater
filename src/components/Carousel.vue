@@ -5,7 +5,7 @@
     :navigation="true"
     :long-swipes="true"
     :slides-per-view="1.8"
-    :space-between="20"
+    :space-between="10"
     :loop="true"
   >
     <swiper-slide v-for="(poster, index) in posters" :key="index">
@@ -35,13 +35,13 @@ defineProps({
 });
 
 const bp = {
-  400: {
+  380: {
     slidesPerView: 2.4,
-    spaceBetween: 20,
+    spaceBetween: 10,
   },
   580: {
     slidesPerView: 3.3,
-    spaceBetween: 20,
+    spaceBetween: 15,
   },
   1024: {
     slidesPerView: 4,
