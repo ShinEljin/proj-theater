@@ -35,6 +35,7 @@
       <div class="hidden lg:flex flex-row gap-1">
         <button
           class="text-white bg-red-500 min-w-[100px] px-4 py-2 rounded-xl hover:opacity-80 transition-all duration-400 font-semibold"
+          @click="toggleModal"
         >
           LOGIN
         </button>
@@ -72,18 +73,44 @@
       </button>
       <button
         class="text-white bg-red-500 min-w-[100px] px-4 py-2 rounded-xl hover:opacity-80 transition-all duration-400 font-semibold"
+        @click="toggleModal"
       >
         LOGIN
       </button>
     </div>
   </nav>
+
+  <BaseModal
+    :modalActive="modalActive"
+    @close-modal="toggleModal"
+    :clickable-outside="true"
+  >
+    <button
+      class="shadow-lg border px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 hover:text-white"
+    >
+      <i class="fa-brands fa-google mr-3"></i>
+      <span class="text-md font-semibold">Login with Google</span>
+    </button>
+    <button
+      class="shadow-lg border px-6 py-3 rounded-lg font-semibold hover:bg-blue-500 hover:text-white mt-2"
+    >
+      <i class="fa-brands fa-facebook mr-3"></i>
+      <span class="text-md font-semibold">Login with Facebook</span>
+    </button>
+  </BaseModal>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import BaseModal from "./BaseModal.vue";
 
 const router = useRouter();
+
+const modalActive = ref(null);
+const toggleModal = () => {
+  modalActive.value = !modalActive.value;
+};
 
 const route = (name) => {
   menuOpen.value = false;

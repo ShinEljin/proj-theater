@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <BookedModal :modalActive="modalActive" @close-modal="toggleModal">
+  <BaseModal :modalActive="modalActive" @close-modal="toggleModal">
     <h1 class="font-bold text-2xl text-center mb-8">
       YOU ARE SUCCESSFULLY BOOKED!
     </h1>
@@ -40,14 +40,14 @@
     >
       HOME
     </button>
-  </BookedModal>
+  </BaseModal>
 </template>
 
 <script setup>
 import Dates from "../components/Dates.vue";
 import MovieInfo from "../components/MovieInfo.vue";
 import CinemaBox from "../components/CinemaBox.vue";
-import BookedModal from "../components/BookedModal.vue";
+import BaseModal from "../components/BaseModal.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
