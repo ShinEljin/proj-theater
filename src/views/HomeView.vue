@@ -7,6 +7,7 @@ import { nsPosters, csPosters } from "../posters/poster";
 
 <template>
   <main>
+    //test
     <HomeLanding />
     <div class="bg-black">
       <CardCollection title="NOW SHOWING" :posters="nsPosters" />
